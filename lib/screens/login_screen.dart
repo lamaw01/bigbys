@@ -1,7 +1,7 @@
 // import 'dart:convert';
 
 // import 'package:bigbys/screens/menu.dart';
-import 'package:bigbys/screens/menu.dart';
+import 'package:bigbys/screens/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'package:http/http.dart' as http;
@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Menu(),
+                            builder: (context) => Home(),
                           ),
                         );
                       },
