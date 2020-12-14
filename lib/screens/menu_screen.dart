@@ -139,10 +139,11 @@ class _HomeState extends State<Home> {
                     padding: EdgeInsets.all(10.0),
                     child: ListTile(
                       // tileColor: Colors.red,
+                      // dense: true,
                       isThreeLine: true,
                       leading: Container(
-                        height: 60,
-                        width: 60,
+                        height: 80,
+                        width: 80,
                         child: CircleAvatar(
                           backgroundColor: Colors.transparent,
                           child: Image.network(
@@ -150,13 +151,23 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      title: Text(
-                        item['menuname'],
-                        // style:
-                        //     TextStyle(decoration: TextDecoration.lineThrough),
+                      title: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          item['menuname'],
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          // style:
+                          //     TextStyle(decoration: TextDecoration.lineThrough),
+                        ),
                       ),
                       subtitle: Text(
                         item['menudescription'],
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
                       ),
                       trailing: Text(
                         item['menuprice'],
