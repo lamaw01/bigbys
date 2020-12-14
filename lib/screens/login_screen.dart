@@ -41,83 +41,75 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Login',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
       body: Container(
-        height: 300,
-        child: Card(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
+        margin: EdgeInsets.only(top: 60),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 26, 8, 8),
+              child: Text(
+                'Login',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Username',
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  controller: user,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
+                controller: user,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  controller: pass,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
+                controller: pass,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  RaisedButton(
-                    color: Colors.pink,
-                    child: Text('Login',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)),
-                    onPressed: () {
-                      login();
-                    },
-                  ),
-                  RaisedButton(
-                    color: Colors.yellow,
-                    child: Text('Proceed',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Home(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              )
-            ],
-          ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                RaisedButton(
+                  color: Colors.pink,
+                  child: Text('Login',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                  onPressed: () {
+                    login();
+                  },
+                ),
+                RaisedButton(
+                  color: Colors.yellow,
+                  child: Text('Proceed',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
