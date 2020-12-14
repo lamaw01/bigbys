@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   http:
   toast:
+  provider:
+  get:
 
 dev_dependencies:
   flutter_test:

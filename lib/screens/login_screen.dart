@@ -84,38 +84,35 @@ class _LoginState extends State<Login> {
                   controller: pass,
                 ),
               ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Expanded(
-                    child: MaterialButton(
-                      color: Colors.pink,
-                      child: Text('Login',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      onPressed: () {
-                        login();
-                      },
-                    ),
+                  RaisedButton(
+                    color: Colors.pink,
+                    child: Text('Login',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
+                    onPressed: () {
+                      login();
+                    },
                   ),
-                  Expanded(
-                    child: MaterialButton(
-                      color: Colors.yellow,
-                      child: Text('Proceed',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
-                      },
-                    ),
+                  RaisedButton(
+                    color: Colors.yellow,
+                    child: Text('Proceed',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               )

@@ -1,21 +1,91 @@
+import 'package:bigbys/controller/countController.dart';
+import 'package:bigbys/screens/basket_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
-
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   Future<List<Map<String, dynamic>>> _future;
+
   @override
   void initState() {
     super.initState();
     _future = fetch();
+  }
+
+  showMyDialogIncrement() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Purchase'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Add this item to basket?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Yes.'),
+              onPressed: () {
+                Get.find<CountController>().increment();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel.'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  showMyDialogDecrement() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Remove'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Remove this item from basket?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Yes.'),
+              onPressed: () {
+                Get.find<CountController>().decrement();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel.'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<List<Map<String, dynamic>>> fetch() async {
@@ -27,11 +97,13 @@ class _HomeState extends State<Home> {
     );
   }
 
+  var imageUrl = 'https://bigbys.e2econsultancy.ph/api/apitest/menu/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Menu'),
+        title: Text('Menu List'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -45,7 +117,6 @@ class _HomeState extends State<Home> {
             if (snapshot.hasError) {
               return Center(
                 child: Container(
-                  constraints: BoxConstraints.expand(),
                   child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: Text(snapshot.error.toString()),
@@ -59,18 +130,78 @@ class _HomeState extends State<Home> {
               );
             }
             return ListView.builder(
+              padding: EdgeInsets.all(10.0),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 final item = snapshot.data[index];
-                return ListTile(
-                  title: Text(item['menuid']),
-                  subtitle: Text(item['menuname']),
+                return Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: ListTile(
+                      // tileColor: Colors.red,
+                      isThreeLine: true,
+                      leading: Container(
+                        height: 60,
+                        width: 60,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          child: Image.network(
+                            imageUrl + item['menuimg'],
+                          ),
+                        ),
+                      ),
+                      title: Text(
+                        item['menuname'],
+                        // style:
+                        //     TextStyle(decoration: TextDecoration.lineThrough),
+                      ),
+                      subtitle: Text(
+                        item['menudescription'],
+                      ),
+                      trailing: Text(
+                        item['menuprice'],
+                      ),
+                      onTap: () {
+                        showMyDialogIncrement();
+                      },
+                      onLongPress: () {
+                        showMyDialogDecrement();
+                      },
+                    ),
+                  ),
                 );
               },
             );
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Basket(),
+              ),
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(Icons.shopping_basket),
+              GetBuilder<CountController>(
+                init: CountController(),
+                builder: (_) {
+                  return Text(
+                    "${_.count}",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          backgroundColor: Colors.red),
     );
   }
 }
