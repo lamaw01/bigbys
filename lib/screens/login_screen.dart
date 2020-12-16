@@ -55,7 +55,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: 600,
         child: Card(
           color: Colors.white,
           child: Column(
