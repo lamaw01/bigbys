@@ -1,3 +1,4 @@
+import 'package:bigbys/colors.dart';
 import 'package:flutter/material.dart';
 
 class OrderSlip extends StatefulWidget {
@@ -10,119 +11,137 @@ class _OrderSlipState extends State<OrderSlip> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Slip'),
+        iconTheme: IconThemeData(
+          color: titleColor, //change your color here
+        ),
+        title: Text(
+          'Order Slip',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: titleColor,
+          ),
+        ),
+        backgroundColor: canvasColor,
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Card(
-            margin: EdgeInsets.all(10),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        '#01234',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '#01234',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Poppins',
+                              color: titleColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Foodtrip Platter',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.grey[700],
+                              ),
+                            ),
+                            Text(
+                              '400.00',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Food Platter',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[700],
+                      Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Crepe Smorgasbord',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.grey[700],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        '₱400.00',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Tapa-bai',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.grey[700],
+                              ),
+                            ),
+                            Text(
+                              '400.00',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Crepe Smorgasbord',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tapa-bai',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      Text(
-                        '₱400.00',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 26, 0, 52),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Amount',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                      Container(
+                        margin: EdgeInsets.only(top: 26, bottom: 26),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total Amount',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '₱ 1,370.00',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Text(
-                          '₱1,370.00',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
